@@ -57,7 +57,7 @@ const Footer = () => {
 
             {/* Quick Links */}
             <div>
-              <h3 className="text-lg font-semibold text-slate-900 mb-4">{t("footer.quickLinks")}</h3>
+              <h3 className="text-lg font-semibold text-slate-900 mb-4">{t("QuickLinks")}</h3>
               <ul className="space-y-2">
                 <li>
                   <Link to="/" className="text-slate-600 hover:text-cyan-600 transition-colors">
@@ -84,7 +84,7 @@ const Footer = () => {
 
             {/* Contact Info */}
             <div>
-              <h3 className="text-lg font-semibold text-slate-900 mb-4">{t("footer.contact")}</h3>
+              <h3 className="text-lg font-semibold text-slate-900 mb-4">{t("Contact Us")}</h3>
               <ul className="space-y-3">
                 <li className="flex items-center gap-3 text-slate-600">
                   <Mail size={16} />
