@@ -1,50 +1,53 @@
 import MotionWrap from "../../components/MotionWrap"
 import { ArrowRight, CheckCircle } from "lucide-react"
-
-const steps = [
-  {
-    name: "Access",
-    description: "User opens the Nyaya Saathi app or visits a nearby kiosk.",
-    color: "from-cyan-50 to-blue-50 border-cyan-200",
-  },
-  {
-    name: "Speak the Problem",
-    description: "User explains the issue in Hindi or their local dialect; no legal terms needed.",
-    color: "from-green-50 to-emerald-50 border-green-200",
-  },
-  {
-    name: "AI Understands",
-    description: "Our AI extracts key information, identifies the issue, and asks clarifying questions.",
-    color: "from-purple-50 to-pink-50 border-purple-200",
-  },
-  {
-    name: "Auto-Generate Documents",
-    description: "The system instantly fills forms and generates affidavits, letters, or certificates.",
-    color: "from-orange-50 to-red-50 border-orange-200",
-  },
-  {
-    name: "Guide & Submit",
-    description: "We provide clear voice guidance, print necessary forms, and help track the status.",
-    color: "from-indigo-50 to-purple-50 border-indigo-200",
-  },
-  {
-    name: "Human Escalation",
-    description: "Complex cases are intelligently routed to our network of local paralegals for expert help.",
-    color: "from-teal-50 to-cyan-50 border-teal-200",
-  },
-]
+import { useTranslation } from "react-i18next"
 
 const HowItWorksSection = () => {
+  const { t } = useTranslation()
+
+  const steps = [
+    {
+      name: t("howItWorksSection.steps.one.name"),
+      description: t("howItWorksSection.steps.one.desc"),
+      color: "from-cyan-50 to-blue-50 border-cyan-200",
+    },
+    {
+      name: t("howItWorksSection.steps.two.name"),
+      description: t("howItWorksSection.steps.two.desc"),
+      color: "from-green-50 to-emerald-50 border-green-200",
+    },
+    {
+      name: t("howItWorksSection.steps.three.name"),
+      description: t("howItWorksSection.steps.three.desc"),
+      color: "from-purple-50 to-pink-50 border-purple-200",
+    },
+    {
+      name: t("howItWorksSection.steps.four.name"),
+      description: t("howItWorksSection.steps.four.desc"),
+      color: "from-orange-50 to-red-50 border-orange-200",
+    },
+    {
+      name: t("howItWorksSection.steps.five.name"),
+      description: t("howItWorksSection.steps.five.desc"),
+      color: "from-indigo-50 to-purple-50 border-indigo-200",
+    },
+    {
+      name: t("howItWorksSection.steps.six.name"),
+      description: t("howItWorksSection.steps.six.desc"),
+      color: "from-teal-50 to-cyan-50 border-teal-200",
+    },
+  ]
+
   return (
     <section className="section-padding bg-slate-50">
       <MotionWrap>
         <div className="mx-auto max-w-7xl container-padding">
           <div className="mx-auto max-w-3xl text-center mb-16">
-            <h2 className="text-base font-semibold leading-7 text-cyan-600 mb-4">How It Works</h2>
-            <h3 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl mb-6">
-              From Conversation to Resolution in
-              <span className="gradient-text"> 6 Simple Steps</span>
-            </h3>
+            <h2 className="text-base font-semibold leading-7 text-cyan-600 mb-4">{t("howItWorksSection.preTitle")}</h2>
+            <h3
+              className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl mb-6"
+              dangerouslySetInnerHTML={{ __html: t("howItWorksSection.title") }}
+            ></h3>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

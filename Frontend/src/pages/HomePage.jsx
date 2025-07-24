@@ -13,8 +13,9 @@ import HowItWorksSection from "./HomePage/HowItWorksSection"
 import Spinner from "../components/Spinner"
 import { ArrowRight, FileText, AlertCircle, BarChart3, Scale, BookOpen } from "lucide-react"
 import { motion } from "framer-motion"
+import { useTranslation } from "react-i18next"
 
-const QuickActionCard = ({ icon, title, description, onClick, color }) => (
+const QuickActionCard = ({ icon, title, description, onClick, color, buttonText }) => (
   <motion.div
     whileHover={{ scale: 1.02, y: -2 }}
     whileTap={{ scale: 0.98 }}
@@ -27,7 +28,7 @@ const QuickActionCard = ({ icon, title, description, onClick, color }) => (
         <h3 className="text-slate-800 font-semibold text-lg mb-2">{title}</h3>
         <p className="text-slate-600 text-sm mb-4">{description}</p>
         <div className="flex items-center text-slate-700 text-sm font-medium">
-          <span>Get Started</span>
+          <span>{buttonText}</span>
           <ArrowRight size={16} className="ml-2" />
         </div>
       </div>
@@ -39,6 +40,7 @@ const HomePage = () => {
   const { isAuthenticated, isLoading, user } = useAuth()
   const [isSmartAssistantModalOpen, setSmartAssistantModalOpen] = useState(false)
   const navigate = useNavigate()
+  const { t } = useTranslation()
 
   if (isLoading) {
     return (
@@ -77,38 +79,44 @@ const HomePage = () => {
                   transition={{ duration: 0.6 }}
                   className="text-center mb-12"
                 >
-                  <h2 className="text-3xl font-bold text-slate-900 mb-4">Quick Actions for {user?.fullName}</h2>
-                  <p className="text-slate-600 text-lg">Manage your legal matters efficiently</p>
+                  <h2 className="text-3xl font-bold text-slate-900 mb-4">
+                    {t("homePage.quickActionsTitle", { name: user?.fullName })}
+                  </h2>
+                  <p className="text-slate-600 text-lg">{t("homePage.quickActionsSubtitle")}</p>
                 </motion.div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
                   <QuickActionCard
                     icon={<BarChart3 size={24} className="text-blue-600" />}
-                    title="View Dashboard"
-                    description="See all your legal issues, documents, and track progress"
+                    title={t("homePage.dashboardCardTitle")}
+                    description={t("homePage.dashboardCardDesc")}
                     onClick={() => navigate("/dashboard")}
                     color="bg-gradient-to-br from-blue-50 to-cyan-50 border-blue-200"
+                    buttonText={t("homePage.getStarted")}
                   />
                   <QuickActionCard
                     icon={<AlertCircle size={24} className="text-red-600" />}
-                    title="Report New Issue"
-                    description="Quickly report a new legal issue or problem"
+                    title={t("homePage.reportIssueCardTitle")}
+                    description={t("homePage.reportIssueCardDesc")}
                     onClick={() => setSmartAssistantModalOpen(true)}
                     color="bg-gradient-to-br from-red-50 to-pink-50 border-red-200"
+                    buttonText={t("homePage.getStarted")}
                   />
                   <QuickActionCard
                     icon={<FileText size={24} className="text-green-600" />}
-                    title="Upload Document"
-                    description="Add important documents to your legal cases"
+                    title={t("homePage.uploadDocCardTitle")}
+                    description={t("homePage.uploadDocCardDesc")}
                     onClick={() => setSmartAssistantModalOpen(true)}
                     color="bg-gradient-to-br from-green-50 to-emerald-50 border-green-200"
+                    buttonText={t("homePage.getStarted")}
                   />
                   <QuickActionCard
                     icon={<Scale size={24} className="text-purple-600" />}
-                    title="Legal Help"
-                    description="Get detailed information about Indian laws and procedures"
+                    title={t("homePage.legalHelpCardTitle")}
+                    description={t("homePage.legalHelpCardDesc")}
                     onClick={() => navigate("/legal-help")}
                     color="bg-gradient-to-br from-purple-50 to-indigo-50 border-purple-200"
+                    buttonText={t("homePage.getStarted")}
                   />
                 </div>
 
@@ -123,7 +131,7 @@ const HomePage = () => {
                     className="btn-primary inline-flex items-center gap-2 text-lg px-8 py-4"
                   >
                     <BarChart3 size={20} />
-                    Go to Full Dashboard
+                    {t("homePage.goToDashboard")}
                     <ArrowRight size={20} />
                   </button>
                 </motion.div>
@@ -144,17 +152,14 @@ const HomePage = () => {
                   className="bg-gradient-to-br from-purple-50 to-indigo-50 p-8 rounded-xl border border-purple-200"
                 >
                   <Scale className="mx-auto mb-4 text-purple-600" size={48} />
-                  <h2 className="text-2xl font-bold text-slate-900 mb-4">Need Legal Help?</h2>
-                  <p className="text-slate-700 mb-6">
-                    Get instant access to comprehensive legal information about Indian laws, procedures, and your
-                    rights. No registration required!
-                  </p>
+                  <h2 className="text-2xl font-bold text-slate-900 mb-4">{t("homePage.publicCtaTitle")}</h2>
+                  <p className="text-slate-700 mb-6">{t("homePage.publicCtaDesc")}</p>
                   <button
                     onClick={() => navigate("/legal-help")}
                     className="btn-primary inline-flex items-center gap-2"
                   >
                     <BookOpen size={20} />
-                    Access Legal Help
+                    {t("homePage.publicCtaButton")}
                     <ArrowRight size={20} />
                   </button>
                 </motion.div>

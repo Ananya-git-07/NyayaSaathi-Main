@@ -1,35 +1,242 @@
 {
-"nav": {
-"home": "Home",
-"dashboard": "Dashboard",
-"profile": "Profile",
-"adminPanel": "Admin Panel",
-"logout": "Logout",
-"login": "Login",
-"register": "Register"
-},
-"loginPage": {
-"title": "Welcome Back!",
-"subtitle": "Sign in to continue to NyayaSaathi.",
-"emailLabel": "Email Address",
-"passwordLabel": "Password",
-"signInButton": "Sign In",
-"signingInButton": "Signing In...",
-"noAccount": "Don't have an account?",
-"signUpLink": "Sign up"
-},
-"dashboardPage": {
-"title": "Your Dashboard",
-"voiceCommandButton": "Start Voice Command",
-"issuesTitle": "My Legal Issues",
-"issuesEmpty": "No legal issues found. Use the Voice Command button to create one.",
-"documentsTitle": "My Documents",
-"documentsEmpty": "No documents found. Use the Voice Command button to add one."
-},
-"publicHero": {
-"title": "Welcome to <span class='text-cyan-400'>NyayaSaathi</span>",
-"subtitle": "Your trusted digital partner for legal guidance and support. We make legal help as easy as talking to a friend.",
-"getStarted": "Get Started",
-"login": "Login"
-}
+  "nav": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "profile": "Profile",
+    "adminPanel": "Admin Panel",
+    "logout": "Logout",
+    "login": "Login",
+    "register": "Register"
+  },
+  "loginPage": {
+    "title": "Welcome Back!",
+    "subtitle": "Sign in to continue to NyayaSaathi.",
+    "emailLabel": "Email Address",
+    "passwordLabel": "Password",
+    "signInButton": "Sign In",
+    "signingInButton": "Signing In...",
+    "noAccount": "Don't have an account?",
+    "signUpLink": "Sign up"
+  },
+  "publicHero": {
+    "title": "Welcome to <span class='gradient-text'>NyayaSaathi</span>",
+    "subtitle": "Your trusted digital partner for legal guidance and support. We make legal help as easy as talking to a friend.",
+    "getStarted": "Get Started",
+    "login": "Login",
+    "aiAssistant": "AI-Powered Legal Assistant",
+    "secure": "Secure & Private",
+    "trusted": "Trusted by Thousands",
+    "aiPowered": "AI-Powered"
+  },
+  "authenticatedHero": {
+    "welcome": "Welcome back,",
+    "subtitle": "Legal help is just a word away. Start a voice query now to get assistance with your legal paperwork.",
+    "startQuery": "Start Your First Voice Query",
+    "aiAssistance": "AI-powered legal assistance",
+    "available": "Available",
+    "languages": "Languages",
+    "secure": "Secure"
+  },
+  "homePage": {
+    "quickActionsTitle": "Quick Actions for {{name}}",
+    "quickActionsSubtitle": "Manage your legal matters efficiently",
+    "getStarted": "Get Started",
+    "dashboardCardTitle": "View Dashboard",
+    "dashboardCardDesc": "See all your legal issues, documents, and track progress",
+    "reportIssueCardTitle": "Report New Issue",
+    "reportIssueCardDesc": "Quickly report a new legal issue or problem",
+    "uploadDocCardTitle": "Upload Document",
+    "uploadDocCardDesc": "Add important documents to your legal cases",
+    "legalHelpCardTitle": "Legal Help",
+    "legalHelpCardDesc": "Get detailed information about Indian laws and procedures",
+    "goToDashboard": "Go to Full Dashboard",
+    "publicCtaTitle": "Need Legal Help?",
+    "publicCtaDesc": "Get instant access to comprehensive legal information about Indian laws, procedures, and your rights. No registration required!",
+    "publicCtaButton": "Access Legal Help"
+  },
+  "featuresSection": {
+    "preTitle": "What is Nyaya Saathi?",
+    "title": "AI-Powered Legal Assistant for <span class='gradient-text'> Rural India</span>",
+    "subtitle": "We make justice accessible by translating complex paperwork into simple conversations, ensuring no one is left behind due to legal jargon or digital illiteracy.",
+    "pills": {
+      "secure": "Secure & Private",
+      "available": "24/7 Available",
+      "multiLanguage": "Multi-language Support",
+      "aiPowered": "AI-Powered"
+    },
+    "features": {
+      "voice": {
+        "title": "Simple Voice Conversations",
+        "desc": "Helps villagers complete legal and government paperwork through natural Hindi and regional dialects."
+      },
+      "docs": {
+        "title": "Auto-Generates Documents",
+        "desc": "Creates ready-to-submit forms, affidavits, and legal notices based on your conversation."
+      },
+      "issues": {
+        "title": "Solves Common Issues",
+        "desc": "Expertly handles Aadhaar, pension, land disputes, missing certificates, and fraud-related cases."
+      },
+      "escalation": {
+        "title": "Human Escalation",
+        "desc": "For complex issues, we seamlessly connect you with qualified local paralegals for expert assistance."
+      }
+    }
+  },
+  "aboutSection": {
+    "preTitle": "The Core Problem",
+    "title": "Bridging the Justice Gap for <span class='gradient-text'> 900 Million Indians</span>",
+    "subtitle": "Essential legal processes are broken for rural communities. From inaccessible government services to intimidating court procedures, the system is designed for failure.",
+    "problems": {
+      "errors": {
+        "title": "Document & Court Summons Errors",
+        "desc": "Low digital literacy and complex legal language lead to mistakes and missed deadlines."
+      },
+      "gaps": {
+        "title": "Welfare Scheme & Land Gaps",
+        "desc": "Outdated records and middlemen exploitation block access to rightful benefits and property claims."
+      },
+      "access": {
+        "title": "Limited Legal Access",
+        "desc": "Courts are far, lawyers are expensive, and reliable legal aid is often out of reach for many villagers."
+      }
+    }
+  },
+  "whyNowSection": {
+    "preTitle": "Why Now?",
+    "title": "The Perfect Confluence of <span class='gradient-text'> Factors</span>",
+    "subtitle": "We are uniquely positioned to deliver AI-powered legal access to 900 million underserved Indians because the technology, infrastructure, and user readiness have finally aligned.",
+    "factors": {
+      "one": "Digital India infrastructure is now operational and widespread.",
+      "two": "Advanced AI models for local languages have matured and are reliable.",
+      "three": "Government legal aid reforms are expanding rapidly.",
+      "four": "Rural digital adoption and trust in online platforms are at an all-time high."
+    }
+  },
+  "howItWorksSection": {
+    "preTitle": "How It Works",
+    "title": "From Conversation to Resolution in <span class='gradient-text'> 6 Simple Steps</span>",
+    "steps": {
+      "one": {
+        "name": "Access",
+        "desc": "User opens the Nyaya Saathi app or visits a nearby kiosk."
+      },
+      "two": {
+        "name": "Speak the Problem",
+        "desc": "User explains the issue in Hindi or their local dialect; no legal terms needed."
+      },
+      "three": {
+        "name": "AI Understands",
+        "desc": "Our AI extracts key information, identifies the issue, and asks clarifying questions."
+      },
+      "four": {
+        "name": "Auto-Generate Documents",
+        "desc": "The system instantly fills forms and generates affidavits, letters, or certificates."
+      },
+      "five": {
+        "name": "Guide & Submit",
+        "desc": "We provide clear voice guidance, print necessary forms, and help track the status."
+      },
+      "six": {
+        "name": "Human Escalation",
+        "desc": "Complex cases are intelligently routed to our network of local paralegals for expert help."
+      }
+    }
+  },
+  "footer": {
+    "tagline": "Empowering rural India with accessible legal services and justice for all.",
+    "quickLinks": "Quick Links",
+    "legalHelp": "Legal Help",
+    "contactUs": "Contact Us",
+    "address": "New Delhi, India",
+    "copyright": "© 2024 NyayaSaathi. All rights reserved. | Government of India Initiative",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "accessibility": "Accessibility"
+  },
+  "registerPage": {
+    "title": "Create an Account",
+    "subtitle": "Join NyayaSaathi to access legal help",
+    "selectRole": "Select Your Role *",
+    "roles": {
+      "citizen": "Citizen",
+      "employee": "Employee",
+      "paralegal": "Paralegal",
+      "admin": "Admin"
+    },
+    "roleDescriptions": {
+      "citizen": "Access legal help and manage your issues",
+      "employee": "Help citizens with legal processes at kiosks",
+      "paralegal": "Provide legal guidance and support",
+      "admin": "Manage system and oversee operations"
+    },
+    "fullNameLabel": "Full Name *",
+    "fullNamePlaceholder": "Enter your full name",
+    "emailLabel": "Email Address *",
+    "emailPlaceholder": "your@email.com",
+    "passwordLabel": "Password *",
+    "passwordPlaceholder": "Min 6 characters",
+    "aadhaarLabel": "Aadhaar Number *",
+    "aadhaarPlaceholder": "12-digit Aadhaar number",
+    "kioskAssignmentLabel": "Kiosk Assignment *",
+    "kioskSearchPlaceholder": "Search by location, village, district, or organization...",
+    "loadingKiosks": "Loading kiosks...",
+    "selectKiosk": "Select a kiosk",
+    "loadingKiosksHelper": "Loading available kiosks...",
+    "noKiosksFound": "No kiosks found matching your search.",
+    "kioskSearchHelper": "Search by location, village, district, or organization name to find your kiosk.",
+    "departmentLabel": "Department *",
+    "departmentPlaceholder": "Legal Helpdesk",
+    "designationLabel": "Designation *",
+    "designationPlaceholder": "Field Officer",
+    "roleLevelLabel": "Role Level *",
+    "roleLevels": {
+      "staff": "Staff",
+      "manager": "Manager"
+    },
+    "roleLevelDescriptions": {
+      "staff": "Regular employee",
+      "manager": "Team leader"
+    },
+    "phoneLabel": "Phone Number *",
+    "phonePlaceholder": "9876543210",
+    "expertiseLabel": "Areas of Expertise *",
+    "expertiseHelper": "Select at least one area of expertise.",
+    "expertiseAreas": {
+      "Aadhaar": "Aadhaar",
+      "Pension": "Pension",
+      "Land": "Land",
+      "Certificates": "Certificates",
+      "Fraud": "Fraud",
+      "Court": "Court",
+      "Welfare": "Welfare"
+    },
+    "adminRoleLabel": "Admin Role *",
+    "adminRoles": {
+      "SuperAdmin": "Super Admin",
+      "DistrictAdmin": "District Admin",
+      "DataEntryOperator": "Data Entry Operator",
+      "KioskAdmin": "Kiosk Admin"
+    },
+    "statusLabel": "Status *",
+    "statuses": {
+      "active": "Active",
+      "inactive": "Inactive",
+      "suspended": "Suspended"
+    },
+    "assignedDistrictsLabel": "Assigned Districts",
+    "assignedDistrictsPlaceholder": "Mathura, Agra (comma-separated)",
+    "assignedDistrictsHelper": "Enter district names separated by commas",
+    "creatingAccountButton": "Creating Account...",
+    "createAccountButton": "Create Account",
+    "alreadyHaveAccount": "Already have an account?",
+    "signInLink": "Sign in",
+    "errorKioskRequired": "Kiosk selection is required for employees",
+    "errorDepartmentRequired": "Department is required for employees",
+    "errorDesignationRequired": "Designation is required for employees",
+    "errorPhoneRequired": "Phone number is required for paralegals",
+    "errorExpertiseRequired": "At least one area of expertise is required for paralegals",
+    "imagePanelTitle": "Join NyayaSaathi",
+    "imagePanelSubtitle": "Empowering rural India with legal justice"
+  }
 }

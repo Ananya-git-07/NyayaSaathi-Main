@@ -1,34 +1,37 @@
 import MotionWrap from "../../components/MotionWrap"
 import { Network, BrainCircuit, Goal, Smartphone, CheckCircle } from "lucide-react"
-
-const factors = [
-  {
-    icon: <Network size={24} />,
-    text: "Digital India infrastructure is now operational and widespread.",
-    color: "from-cyan-50 to-blue-50 border-cyan-200",
-    iconColor: "text-cyan-600",
-  },
-  {
-    icon: <BrainCircuit size={24} />,
-    text: "Advanced AI models for local languages have matured and are reliable.",
-    color: "from-green-50 to-emerald-50 border-green-200",
-    iconColor: "text-green-600",
-  },
-  {
-    icon: <Goal size={24} />,
-    text: "Government legal aid reforms are expanding rapidly.",
-    color: "from-purple-50 to-pink-50 border-purple-200",
-    iconColor: "text-purple-600",
-  },
-  {
-    icon: <Smartphone size={24} />,
-    text: "Rural digital adoption and trust in online platforms are at an all-time high.",
-    color: "from-orange-50 to-red-50 border-orange-200",
-    iconColor: "text-orange-600",
-  },
-]
+import { useTranslation } from "react-i18next"
 
 const WhyNowSection = () => {
+  const { t } = useTranslation()
+
+  const factors = [
+    {
+      icon: <Network size={24} />,
+      text: t("whyNowSection.factors.one"),
+      color: "from-cyan-50 to-blue-50 border-cyan-200",
+      iconColor: "text-cyan-600",
+    },
+    {
+      icon: <BrainCircuit size={24} />,
+      text: t("whyNowSection.factors.two"),
+      color: "from-green-50 to-emerald-50 border-green-200",
+      iconColor: "text-green-600",
+    },
+    {
+      icon: <Goal size={24} />,
+      text: t("whyNowSection.factors.three"),
+      color: "from-purple-50 to-pink-50 border-purple-200",
+      iconColor: "text-purple-600",
+    },
+    {
+      icon: <Smartphone size={24} />,
+      text: t("whyNowSection.factors.four"),
+      color: "from-orange-50 to-red-50 border-orange-200",
+      iconColor: "text-orange-600",
+    },
+  ]
+
   return (
     <section
       className="section-padding relative bg-cover bg-center bg-no-repeat"
@@ -40,15 +43,12 @@ const WhyNowSection = () => {
       <MotionWrap className="relative z-10">
         <div className="mx-auto max-w-7xl container-padding">
           <div className="mx-auto max-w-4xl text-center mb-16">
-            <h2 className="text-base font-semibold leading-7 text-cyan-600 mb-4">Why Now?</h2>
-            <h3 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-6xl mb-6">
-              The Perfect Confluence of
-              <span className="gradient-text"> Factors</span>
-            </h3>
-            <p className="text-xl leading-8 text-slate-700">
-              We are uniquely positioned to deliver AI-powered legal access to 900 million underserved Indians because
-              the technology, infrastructure, and user readiness have finally aligned.
-            </p>
+            <h2 className="text-base font-semibold leading-7 text-cyan-600 mb-4">{t("whyNowSection.preTitle")}</h2>
+            <h3
+              className="text-4xl font-bold tracking-tight text-slate-900 sm:text-6xl mb-6"
+              dangerouslySetInnerHTML={{ __html: t("whyNowSection.title") }}
+            ></h3>
+            <p className="text-xl leading-8 text-slate-700">{t("whyNowSection.subtitle")}</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -63,7 +63,7 @@ const WhyNowSection = () => {
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-4">
                       <CheckCircle size={20} className="text-cyan-600" />
-                      <span className="text-cyan-600 font-semibold">Factor {index + 1}</span>
+                      <span className="text-cyan-600 font-semibold">{t("whyNowSection.preTitle")} {index + 1}</span>
                     </div>
                     <p className="text-lg text-slate-800 leading-relaxed">{factor.text}</p>
                   </div>

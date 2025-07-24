@@ -22,9 +22,11 @@ import {
 } from "lucide-react"
 import apiClient from "../api/axiosConfig"
 import toast from "react-hot-toast"
+import { useTranslation } from "react-i18next"
 
 const RegisterPage = () => {
   const { register, isAuthenticated, isLoading } = useAuth()
+  const { t } = useTranslation()
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -133,13 +135,13 @@ const RegisterPage = () => {
         delete submitData.adminRole
 
         if (!submitData.kioskId) {
-          throw new Error("Kiosk selection is required for employees")
+          throw new Error(t("registerPage.errorKioskRequired"))
         }
         if (!submitData.department) {
-          throw new Error("Department is required for employees")
+          throw new Error(t("registerPage.errorDepartmentRequired"))
         }
         if (!submitData.designation) {
-          throw new Error("Designation is required for employees")
+          throw new Error(t("registerPage.errorDesignationRequired"))
         }
       } else if (formData.role === "paralegal") {
         delete submitData.department
@@ -151,10 +153,10 @@ const RegisterPage = () => {
         delete submitData.adminRole
 
         if (!submitData.phoneNumber) {
-          throw new Error("Phone number is required for paralegals")
+          throw new Error(t("registerPage.errorPhoneRequired"))
         }
         if (!submitData.areasOfExpertise || submitData.areasOfExpertise.length === 0) {
-          throw new Error("At least one area of expertise is required for paralegals")
+          throw new Error(t("registerPage.errorExpertiseRequired"))
         }
       } else if (formData.role === "admin") {
         delete submitData.department
@@ -178,12 +180,12 @@ const RegisterPage = () => {
         return (
           <div className="space-y-6">
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">Kiosk Assignment *</label>
+              <label className="block text-sm font-medium text-slate-700 mb-2">{t("registerPage.kioskAssignmentLabel")}</label>
               <div className="relative mb-3">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" size={20} />
                 <input
                   type="text"
-                  placeholder="Search by location, village, district, or organization..."
+                  placeholder={t("registerPage.kioskSearchPlaceholder")}
                   value={kioskSearch}
                   onChange={(e) => setKioskSearch(e.target.value)}
                   className="input-style pl-12"
@@ -199,7 +201,7 @@ const RegisterPage = () => {
                   className="input-style pl-12 appearance-none"
                   disabled={loadingKiosks}
                 >
-                  <option value="">{loadingKiosks ? "Loading kiosks..." : "Select a kiosk"}</option>
+                  <option value="">{loadingKiosks ? t("registerPage.loadingKiosks") : t("registerPage.selectKiosk")}</option>
                   {filteredKiosks.map((kiosk) => (
                     <option key={kiosk._id} value={kiosk._id}>
                       {kiosk.location} - {kiosk.village}, {kiosk.district} ({kiosk.organizationType}:{" "}
@@ -208,23 +210,23 @@ const RegisterPage = () => {
                   ))}
                 </select>
               </div>
-              {loadingKiosks && <p className="text-xs text-slate-500 mt-1">Loading available kiosks...</p>}
+              {loadingKiosks && <p className="text-xs text-slate-500 mt-1">{t("registerPage.loadingKiosksHelper")}</p>}
               {kioskSearch && filteredKiosks.length === 0 && !loadingKiosks && (
-                <p className="text-xs text-orange-600 mt-1">No kiosks found matching your search.</p>
+                <p className="text-xs text-orange-600 mt-1">{t("registerPage.noKiosksFound")}</p>
               )}
               <p className="text-xs text-slate-500 mt-1">
-                Search by location, village, district, or organization name to find your kiosk.
+                {t("registerPage.kioskSearchHelper")}
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">Department *</label>
+                <label className="block text-sm font-medium text-slate-700 mb-2">{t("registerPage.departmentLabel")}</label>
                 <div className="relative">
                   <Building className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" size={20} />
                   <input
                     name="department"
-                    placeholder="Legal Helpdesk"
+                    placeholder={t("registerPage.departmentPlaceholder")}
                     value={formData.department}
                     onChange={handleChange}
                     required
@@ -233,12 +235,12 @@ const RegisterPage = () => {
                 </div>
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">Designation *</label>
+                <label className="block text-sm font-medium text-slate-700 mb-2">{t("registerPage.designationLabel")}</label>
                 <div className="relative">
                   <Award className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" size={20} />
                   <input
                     name="designation"
-                    placeholder="Field Officer"
+                    placeholder={t("registerPage.designationPlaceholder")}
                     value={formData.designation}
                     onChange={handleChange}
                     required
@@ -249,7 +251,7 @@ const RegisterPage = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">Role Level *</label>
+              <label className="block text-sm font-medium text-slate-700 mb-2">{t("registerPage.roleLevelLabel")}</label>
               <div className="grid grid-cols-2 gap-4">
                 {["staff", "manager"].map((level) => (
                   <label
@@ -269,8 +271,8 @@ const RegisterPage = () => {
                       className="sr-only"
                     />
                     <div className="text-center">
-                      <div className="font-medium capitalize">{level}</div>
-                      <div className="text-xs opacity-75">{level === "staff" ? "Regular employee" : "Team leader"}</div>
+                      <div className="font-medium capitalize">{t(`registerPage.roleLevels.${level}`)}</div>
+                      <div className="text-xs opacity-75">{t(`registerPage.roleLevelDescriptions.${level}`)}</div>
                     </div>
                   </label>
                 ))}
@@ -283,12 +285,12 @@ const RegisterPage = () => {
         return (
           <div className="space-y-6">
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">Phone Number *</label>
+              <label className="block text-sm font-medium text-slate-700 mb-2">{t("registerPage.phoneLabel")}</label>
               <div className="relative">
                 <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" size={20} />
                 <input
                   name="phoneNumber"
-                  placeholder="9876543210"
+                  placeholder={t("registerPage.phonePlaceholder")}
                   value={formData.phoneNumber}
                   onChange={handleChange}
                   required
@@ -300,7 +302,7 @@ const RegisterPage = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-3">Areas of Expertise *</label>
+              <label className="block text-sm font-medium text-slate-700 mb-3">{t("registerPage.expertiseLabel")}</label>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                 {["Aadhaar", "Pension", "Land", "Certificates", "Fraud", "Court", "Welfare"].map((area) => (
                   <label
@@ -319,11 +321,11 @@ const RegisterPage = () => {
                       onChange={handleChange}
                       className="sr-only"
                     />
-                    <span className="text-sm font-medium">{area}</span>
+                    <span className="text-sm font-medium">{t(`registerPage.expertiseAreas.${area}`)}</span>
                   </label>
                 ))}
               </div>
-              <p className="text-xs text-slate-500 mt-2">Select at least one area of expertise</p>
+              <p className="text-xs text-slate-500 mt-2">{t("registerPage.expertiseHelper")}</p>
             </div>
           </div>
         )
@@ -332,7 +334,7 @@ const RegisterPage = () => {
         return (
           <div className="space-y-6">
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">Admin Role *</label>
+              <label className="block text-sm font-medium text-slate-700 mb-2">{t("registerPage.adminRoleLabel")}</label>
               <div className="relative">
                 <Award className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" size={20} />
                 <select
@@ -342,16 +344,16 @@ const RegisterPage = () => {
                   required
                   className="input-style pl-12 appearance-none"
                 >
-                  <option value="SuperAdmin">Super Admin</option>
-                  <option value="DistrictAdmin">District Admin</option>
-                  <option value="DataEntryOperator">Data Entry Operator</option>
-                  <option value="KioskAdmin">Kiosk Admin</option>
+                  <option value="SuperAdmin">{t('registerPage.adminRoles.SuperAdmin')}</option>
+                  <option value="DistrictAdmin">{t('registerPage.adminRoles.DistrictAdmin')}</option>
+                  <option value="DataEntryOperator">{t('registerPage.adminRoles.DataEntryOperator')}</option>
+                  <option value="KioskAdmin">{t('registerPage.adminRoles.KioskAdmin')}</option>
                 </select>
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">Status *</label>
+              <label className="block text-sm font-medium text-slate-700 mb-2">{t("registerPage.statusLabel")}</label>
               <div className="grid grid-cols-3 gap-4">
                 {["active", "inactive", "suspended"].map((status) => (
                   <label
@@ -371,7 +373,7 @@ const RegisterPage = () => {
                       className="sr-only"
                     />
                     <div className="text-center">
-                      <div className="font-medium capitalize">{status}</div>
+                      <div className="font-medium capitalize">{t(`registerPage.statuses.${status}`)}</div>
                     </div>
                   </label>
                 ))}
@@ -379,18 +381,18 @@ const RegisterPage = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">Assigned Districts</label>
+              <label className="block text-sm font-medium text-slate-700 mb-2">{t("registerPage.assignedDistrictsLabel")}</label>
               <div className="relative">
                 <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" size={20} />
                 <input
                   name="assignedDistricts"
-                  placeholder="Mathura, Agra (comma-separated)"
+                  placeholder={t("registerPage.assignedDistrictsPlaceholder")}
                   value={formData.assignedDistricts.join(", ")}
                   onChange={handleChange}
                   className="input-style pl-12"
                 />
               </div>
-              <p className="text-xs text-slate-500 mt-1">Enter district names separated by commas</p>
+              <p className="text-xs text-slate-500 mt-1">{t("registerPage.assignedDistrictsHelper")}</p>
             </div>
           </div>
         )
@@ -401,18 +403,7 @@ const RegisterPage = () => {
   }
 
   const getRoleDescription = (role) => {
-    switch (role) {
-      case "citizen":
-        return "Access legal help and manage your issues"
-      case "employee":
-        return "Help citizens with legal processes at kiosks"
-      case "paralegal":
-        return "Provide legal guidance and support"
-      case "admin":
-        return "Manage system and oversee operations"
-      default:
-        return ""
-    }
+    return t(`registerPage.roleDescriptions.${role}`)
   }
 
   if (isLoading) return <Spinner />
@@ -434,8 +425,8 @@ const RegisterPage = () => {
               <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4 backdrop-blur-sm">
                 <Scale size={32} />
               </div>
-              <h3 className="text-2xl font-bold mb-2">Join NyayaSaathi</h3>
-              <p className="text-white/80">Empowering rural India with legal justice</p>
+              <h3 className="text-2xl font-bold mb-2">{t("registerPage.imagePanelTitle")}</h3>
+              <p className="text-white/80">{t("registerPage.imagePanelSubtitle")}</p>
             </div>
           </div>
         </div>
@@ -444,8 +435,8 @@ const RegisterPage = () => {
         <div className="w-full lg:w-3/5 flex flex-col h-full">
           <div className="p-8 lg:p-12 pb-4 flex-shrink-0">
             <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-slate-900 mb-2">Create an Account</h2>
-              <p className="text-slate-600">Join NyayaSaathi to access legal help</p>
+              <h2 className="text-3xl font-bold text-slate-900 mb-2">{t("registerPage.title")}</h2>
+              <p className="text-slate-600">{t("registerPage.subtitle")}</p>
             </div>
 
             {error && (
@@ -456,7 +447,7 @@ const RegisterPage = () => {
           <div className="flex-1 overflow-y-auto px-8 lg:px-12">
             <form onSubmit={handleSubmit} className="space-y-6 pb-8">
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-3">Select Your Role *</label>
+                <label className="block text-sm font-medium text-slate-700 mb-3">{t("registerPage.selectRole")}</label>
                 <div className="grid grid-cols-2 gap-4">
                   {[
                     { value: "citizen", label: "Citizen", icon: <User size={20} /> },
@@ -482,7 +473,7 @@ const RegisterPage = () => {
                       />
                       <div className="flex-shrink-0">{role.icon}</div>
                       <div>
-                        <div className="font-medium">{role.label}</div>
+                        <div className="font-medium">{t(`registerPage.roles.${role.value}`)}</div>
                         <div className="text-xs opacity-75">{getRoleDescription(role.value)}</div>
                       </div>
                     </label>
@@ -492,12 +483,12 @@ const RegisterPage = () => {
 
               <div className="space-y-6">
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">Full Name *</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">{t("registerPage.fullNameLabel")}</label>
                   <div className="relative">
                     <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" size={20} />
                     <input
                       name="fullName"
-                      placeholder="Enter your full name"
+                      placeholder={t("registerPage.fullNamePlaceholder")}
                       value={formData.fullName}
                       onChange={handleChange}
                       required
@@ -508,13 +499,13 @@ const RegisterPage = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-2">Email Address *</label>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">{t("registerPage.emailLabel")}</label>
                     <div className="relative">
                       <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" size={20} />
                       <input
                         name="email"
                         type="email"
-                        placeholder="your@email.com"
+                        placeholder={t("registerPage.emailPlaceholder")}
                         value={formData.email}
                         onChange={handleChange}
                         required
@@ -523,13 +514,13 @@ const RegisterPage = () => {
                     </div>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-2">Password *</label>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">{t("registerPage.passwordLabel")}</label>
                     <div className="relative">
                       <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" size={20} />
                       <input
                         name="password"
                         type={showPassword ? "text" : "password"}
-                        placeholder="Min 6 characters"
+                        placeholder={t("registerPage.passwordPlaceholder")}
                         value={formData.password}
                         onChange={handleChange}
                         required
@@ -548,12 +539,12 @@ const RegisterPage = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">Aadhaar Number *</label>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">{t("registerPage.aadhaarLabel")}</label>
                   <div className="relative">
                     <CreditCard className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" size={20} />
                     <input
                       name="aadhaarNumber"
-                      placeholder="12-digit Aadhaar number"
+                      placeholder={t("registerPage.aadhaarPlaceholder")}
                       value={formData.aadhaarNumber}
                       onChange={handleChange}
                       required
@@ -571,20 +562,20 @@ const RegisterPage = () => {
                 {loading ? (
                   <>
                     <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-                    Creating Account...
+                    {t("registerPage.creatingAccountButton")}
                   </>
                 ) : (
                   <>
-                    Create Account
+                    {t("registerPage.createAccountButton")}
                     <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                   </>
                 )}
               </button>
 
               <p className="mt-8 text-center text-sm text-slate-600">
-                Already have an account?{" "}
+                {t("registerPage.alreadyHaveAccount")}{" "}
                 <Link to="/login" className="font-medium text-cyan-600 hover:text-cyan-700 transition-colors">
-                  Sign in
+                  {t("registerPage.signInLink")}
                 </Link>
               </p>
             </form>

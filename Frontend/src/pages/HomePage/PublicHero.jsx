@@ -26,12 +26,12 @@ const PublicHero = () => {
         <div className="mb-8">
           <div className="flex items-center justify-center gap-2 mb-6">
             <Sparkles size={24} className="text-cyan-600" />
-            <span className="text-cyan-700 font-semibold">AI-Powered Legal Assistant</span>
+            <span className="text-cyan-700 font-semibold">{t("publicHero.aiAssistant")}</span>
             <Sparkles size={24} className="text-cyan-600" />
           </div>
 
           <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-slate-900 mb-6">
-            <span dangerouslySetInnerHTML={{ __html: t("publicHero.title", { nsSeparator: "||" }) }} />
+            <span dangerouslySetInnerHTML={{ __html: t("publicHero.title") }} />
           </h1>
 
           <p className="max-w-4xl mx-auto text-xl md:text-2xl text-slate-700 mb-12 leading-relaxed">
@@ -53,15 +53,15 @@ const PublicHero = () => {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 pt-8 border-t border-slate-200">
           <div className="flex items-center justify-center gap-3 text-slate-700">
             <Shield size={20} className="text-cyan-600" />
-            <span>Secure & Private</span>
+            <span>{t("publicHero.secure")}</span>
           </div>
           <div className="flex items-center justify-center gap-3 text-slate-700">
             <Users size={20} className="text-cyan-600" />
-            <span>Trusted by Thousands</span>
+            <span>{t("publicHero.trusted")}</span>
           </div>
           <div className="flex items-center justify-center gap-3 text-slate-700">
             <Sparkles size={20} className="text-cyan-600" />
-            <span>AI-Powered</span>
+            <span>{t("publicHero.aiPowered")}</span>
           </div>
         </div>
       </motion.div>
