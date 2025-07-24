@@ -419,169 +419,177 @@ const RegisterPage = () => {
   if (isAuthenticated) return <Navigate to="/dashboard" replace />
 
   return (
-    <div className="w-full max-w-6xl mx-auto flex rounded-2xl shadow-2xl overflow-hidden glass-card my-8">
-      <div className="hidden lg:block lg:w-2/5 relative">
-        <img
-          src="/login-background.png"
-          alt="Community hands together, a sign of unity and support"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 to-blue-500/20"></div>
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-center text-white p-8">
-            <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4 backdrop-blur-sm">
-              <Scale size={32} />
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 py-8 px-4 flex items-center justify-center">
+      <div className="w-full max-w-6xl mx-auto flex rounded-2xl shadow-2xl overflow-hidden glass-card h-[90vh]">
+        {/* Left side - Image */}
+        <div className="hidden lg:block lg:w-2/5 relative flex-shrink-0">
+          <img
+            src="/login-background.png"
+            alt="Community hands together, a sign of unity and support"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 to-blue-500/20"></div>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="text-center text-white p-8">
+              <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4 backdrop-blur-sm">
+                <Scale size={32} />
+              </div>
+              <h3 className="text-2xl font-bold mb-2">Join NyayaSaathi</h3>
+              <p className="text-white/80">Empowering rural India with legal justice</p>
             </div>
-            <h3 className="text-2xl font-bold mb-2">Join NyayaSaathi</h3>
-            <p className="text-white/80">Empowering rural India with legal justice</p>
           </div>
         </div>
-      </div>
 
-      <div className="w-full lg:w-3/5 p-8 lg:p-12 flex flex-col justify-center max-h-screen overflow-y-auto">
-        <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-slate-900 mb-2">Create an Account</h2>
-          <p className="text-slate-600">Join NyayaSaathi to access legal help</p>
-        </div>
-
-        {error && (
-          <div className="bg-red-50 border border-red-200 text-red-700 p-4 rounded-lg mb-6 text-center">{error}</div>
-        )}
-
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
-            <label className="block text-sm font-medium text-slate-700 mb-3">Select Your Role *</label>
-            <div className="grid grid-cols-2 gap-4">
-              {[
-                { value: "citizen", label: "Citizen", icon: <User size={20} /> },
-                { value: "employee", label: "Employee", icon: <Users size={20} /> },
-                { value: "paralegal", label: "Paralegal", icon: <Award size={20} /> },
-                { value: "admin", label: "Admin", icon: <Building size={20} /> },
-              ].map((role) => (
-                <label
-                  key={role.value}
-                  className={`flex items-center gap-3 p-4 rounded-lg border-2 cursor-pointer transition-all ${
-                    formData.role === role.value
-                      ? "border-cyan-500 bg-cyan-50 text-cyan-700"
-                      : "border-slate-300 bg-white text-slate-700 hover:border-slate-400"
-                  }`}
-                >
-                  <input
-                    type="radio"
-                    name="role"
-                    value={role.value}
-                    checked={formData.role === role.value}
-                    onChange={handleChange}
-                    className="sr-only"
-                  />
-                  <div className="flex-shrink-0">{role.icon}</div>
-                  <div>
-                    <div className="font-medium">{role.label}</div>
-                    <div className="text-xs opacity-75">{getRoleDescription(role.value)}</div>
-                  </div>
-                </label>
-              ))}
-            </div>
-          </div>
-
-          <div className="space-y-6">
-            <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">Full Name *</label>
-              <div className="relative">
-                <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" size={20} />
-                <input
-                  name="fullName"
-                  placeholder="Enter your full name"
-                  value={formData.fullName}
-                  onChange={handleChange}
-                  required
-                  className="input-style pl-12"
-                />
-              </div>
+        {/* Right side - Form */}
+        <div className="w-full lg:w-3/5 flex flex-col h-full">
+          <div className="p-8 lg:p-12 pb-4 flex-shrink-0">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-bold text-slate-900 mb-2">Create an Account</h2>
+              <p className="text-slate-600">Join NyayaSaathi to access legal help</p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">Email Address *</label>
-                <div className="relative">
-                  <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" size={20} />
-                  <input
-                    name="email"
-                    type="email"
-                    placeholder="your@email.com"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="input-style pl-12"
-                  />
-                </div>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">Password *</label>
-                <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" size={20} />
-                  <input
-                    name="password"
-                    type={showPassword ? "text" : "password"}
-                    placeholder="Min 6 characters"
-                    value={formData.password}
-                    onChange={handleChange}
-                    required
-                    minLength={6}
-                    className="input-style pl-12 pr-12"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors"
-                  >
-                    {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">Aadhaar Number *</label>
-              <div className="relative">
-                <CreditCard className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" size={20} />
-                <input
-                  name="aadhaarNumber"
-                  placeholder="12-digit Aadhaar number"
-                  value={formData.aadhaarNumber}
-                  onChange={handleChange}
-                  required
-                  pattern="\d{12}"
-                  title="Must be 12 digits"
-                  className="input-style pl-12"
-                />
-              </div>
-            </div>
-          </div>
-
-          {renderRoleSpecificFields()}
-
-          <button type="submit" disabled={loading} className="w-full btn-primary text-lg py-4 group">
-            {loading ? (
-              <>
-                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-                Creating Account...
-              </>
-            ) : (
-              <>
-                Create Account
-                <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-              </>
+            {error && (
+              <div className="bg-red-50 border border-red-200 text-red-700 p-4 rounded-lg mb-6 text-center">{error}</div>
             )}
-          </button>
-        </form>
+          </div>
 
-        <p className="mt-8 text-center text-sm text-slate-600">
-          Already have an account?{" "}
-          <Link to="/login" className="font-medium text-cyan-600 hover:text-cyan-700 transition-colors">
-            Sign in
-          </Link>
-        </p>
+          <div className="flex-1 overflow-y-auto px-8 lg:px-12">
+            <form onSubmit={handleSubmit} className="space-y-6 pb-8">
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-3">Select Your Role *</label>
+                <div className="grid grid-cols-2 gap-4">
+                  {[
+                    { value: "citizen", label: "Citizen", icon: <User size={20} /> },
+                    { value: "employee", label: "Employee", icon: <Users size={20} /> },
+                    { value: "paralegal", label: "Paralegal", icon: <Award size={20} /> },
+                    { value: "admin", label: "Admin", icon: <Building size={20} /> },
+                  ].map((role) => (
+                    <label
+                      key={role.value}
+                      className={`flex items-center gap-3 p-4 rounded-lg border-2 cursor-pointer transition-all ${
+                        formData.role === role.value
+                          ? "border-cyan-500 bg-cyan-50 text-cyan-700"
+                          : "border-slate-300 bg-white text-slate-700 hover:border-slate-400"
+                      }`}
+                    >
+                      <input
+                        type="radio"
+                        name="role"
+                        value={role.value}
+                        checked={formData.role === role.value}
+                        onChange={handleChange}
+                        className="sr-only"
+                      />
+                      <div className="flex-shrink-0">{role.icon}</div>
+                      <div>
+                        <div className="font-medium">{role.label}</div>
+                        <div className="text-xs opacity-75">{getRoleDescription(role.value)}</div>
+                      </div>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              <div className="space-y-6">
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Full Name *</label>
+                  <div className="relative">
+                    <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" size={20} />
+                    <input
+                      name="fullName"
+                      placeholder="Enter your full name"
+                      value={formData.fullName}
+                      onChange={handleChange}
+                      required
+                      className="input-style pl-12"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">Email Address *</label>
+                    <div className="relative">
+                      <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" size={20} />
+                      <input
+                        name="email"
+                        type="email"
+                        placeholder="your@email.com"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                        className="input-style pl-12"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">Password *</label>
+                    <div className="relative">
+                      <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" size={20} />
+                      <input
+                        name="password"
+                        type={showPassword ? "text" : "password"}
+                        placeholder="Min 6 characters"
+                        value={formData.password}
+                        onChange={handleChange}
+                        required
+                        minLength={6}
+                        className="input-style pl-12 pr-12"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
+                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors"
+                      >
+                        {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Aadhaar Number *</label>
+                  <div className="relative">
+                    <CreditCard className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" size={20} />
+                    <input
+                      name="aadhaarNumber"
+                      placeholder="12-digit Aadhaar number"
+                      value={formData.aadhaarNumber}
+                      onChange={handleChange}
+                      required
+                      pattern="\d{12}"
+                      title="Must be 12 digits"
+                      className="input-style pl-12"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {renderRoleSpecificFields()}
+
+              <button type="submit" disabled={loading} className="w-full btn-primary text-lg py-4 group">
+                {loading ? (
+                  <>
+                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                    Creating Account...
+                  </>
+                ) : (
+                  <>
+                    Create Account
+                    <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                  </>
+                )}
+              </button>
+
+              <p className="mt-8 text-center text-sm text-slate-600">
+                Already have an account?{" "}
+                <Link to="/login" className="font-medium text-cyan-600 hover:text-cyan-700 transition-colors">
+                  Sign in
+                </Link>
+              </p>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
   )
