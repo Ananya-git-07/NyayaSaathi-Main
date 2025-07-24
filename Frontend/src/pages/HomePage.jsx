@@ -49,16 +49,16 @@ const HomePage = () => {
   }
 
   return (
-    <div className="relative">
-      {/* Background Glows - Updated for light theme */}
-      <div className="absolute top-0 left-0 w-full h-full -z-0">
-        <div className="absolute top-[-10rem] left-[-20rem] w-[50rem] h-[50rem] bg-cyan-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+    <div className="relative overflow-x-hidden">
+      {/* Background Glows - Fixed positioning to prevent horizontal scroll */}
+      <div className="absolute top-0 left-0 w-full h-full -z-0 overflow-hidden">
+        <div className="absolute top-[-10rem] left-[-10rem] w-[40rem] h-[40rem] bg-cyan-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
         <div
-          className="absolute top-[20rem] right-[-20rem] w-[50rem] h-[50rem] bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"
+          className="absolute top-[20rem] right-[-10rem] w-[40rem] h-[40rem] bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"
           style={{ animationDelay: "2s" }}
         ></div>
         <div
-          className="absolute top-[60rem] left-[0rem] w-[40rem] h-[40rem] bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"
+          className="absolute top-[60rem] left-[-5rem] w-[35rem] h-[35rem] bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"
           style={{ animationDelay: "4s" }}
         ></div>
       </div>
