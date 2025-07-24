@@ -422,7 +422,7 @@ const RegisterPage = () => {
     <div className="w-full max-w-6xl mx-auto flex rounded-2xl shadow-2xl overflow-hidden glass-card my-8">
       <div className="hidden lg:block lg:w-2/5 relative">
         <img
-          src="/placeholder.svg?height=800&width=600"
+          src="/login-background.png"
           alt="Community hands together, a sign of unity and support"
           className="w-full h-full object-cover"
         />
