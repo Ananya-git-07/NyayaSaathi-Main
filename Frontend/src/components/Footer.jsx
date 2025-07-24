@@ -24,8 +24,7 @@ const Footer = () => {
                 </span>
               </Link>
               <p className="text-slate-600 mb-4 max-w-md">
-                {t("footer.description") ||
-                  "Empowering rural India with accessible legal services and justice for all."}
+                  "Empowering rural India with accessible legal services and justice for all."
               </p>
               <div className="flex space-x-4">
                 <a
